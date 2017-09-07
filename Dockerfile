@@ -13,7 +13,7 @@ RUN apt-get -y install software-properties-common
 RUN add-apt-repository -y 'deb http://archive.ubuntu.com/ubuntu trusty universe'
 
 # Install MySQL 5.6 and SSH
-RUN apt-get update && apt-get install -y mysql-client-5.6 mysql-server-5.6 openssh-server openssl htop sudo nano git python-setuptools
+RUN apt-get update && apt-get install -y mysql-client-5.6 mysql-server-5.6 openssh-server openssl htop sudo nano git python-setuptools pwgen
 
 # Supervisor Config
 RUN /usr/bin/easy_install supervisor
@@ -36,8 +36,8 @@ RUN cd /var/www/html/ \
     && rm latest.tar.gz
 
 RUN mv /var/www/html/wordpress /var/www/html/wp \
-    && chown -R wordpress:www-data /var/www/html/wp \
-    && chmod -R 775 /var/www/html/wp
+    && chown -R wordpress:www-data /var/www/html \
+    && chmod -R 775 /var/www/html
 
 # Install phpmyadmin
 ADD https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz /usr/share/phpmyadmin.tar.gz
